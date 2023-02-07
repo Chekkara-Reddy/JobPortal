@@ -15,10 +15,8 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseEnitity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	protected long id;
+	
+
 	@Column(name="CREATEDBY")
 	protected String createdBy;
 	@Column(name="MODIFIEDBY")
@@ -28,12 +26,7 @@ public class BaseEnitity {
 	@Column(name="MODIFIEDDATETIME")
 	protected String modifiedDateTime;
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getCreatedBy() {
 		return createdBy;
 	}

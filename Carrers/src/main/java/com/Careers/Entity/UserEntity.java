@@ -2,10 +2,14 @@ package com.Careers.Entity;
 
 import java.sql.Date;
 
+import org.hibernate.type.TrueFalseConverter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
@@ -16,6 +20,10 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name="USER")
 public class UserEntity extends BaseEnitity{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id")
+	private long user_id;
 	
 	private String firstName;
 	
@@ -24,12 +32,15 @@ public class UserEntity extends BaseEnitity{
 	private String userName;
 	
 	private String password;
+	private String ConfirmPassword;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name="DOB")
 	private Date date_of_birth;
 	
 	private String mobileNo;
 	
+	@Column(unique = true,nullable = false)
 	private String email;
 	
 	private long role_id;
@@ -37,9 +48,24 @@ public class UserEntity extends BaseEnitity{
 	@Lob
 	@Column(name="profilepic",columnDefinition="LONGBLOB")
 	private byte[] profile;
+	
 	private String picType;
 	
 	private String Address;
+	
+	
+	public long getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
+	}
+	public String getConfirmPassword() {
+		return ConfirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		ConfirmPassword = confirmPassword;
+	}
 	public String getAddress()
 	{
 		return Address;

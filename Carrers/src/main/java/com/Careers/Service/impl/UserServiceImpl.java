@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService{
 			olduser.setModifiedBy(user.getFirstName()+" "+user.getSecondName());
 			olduser.setModifiedDateTime(presentTime());
 		//	olduser.setProfile();
-			olduser.setRole_id(user.getId());
+			olduser.setRole_id(user.getRole_id());
 			olduser.setSecondName(user.getSecondName());
 			olduser.setUserName(user.getUserName());
 			olduser.setAddress(user.getAddress());

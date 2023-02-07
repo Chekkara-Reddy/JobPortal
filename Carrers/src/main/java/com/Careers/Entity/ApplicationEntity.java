@@ -2,9 +2,14 @@ package com.Careers.Entity;
 
 import java.sql.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -13,12 +18,14 @@ import jakarta.persistence.TemporalType;
 @Table(name="Application")
 public class ApplicationEntity extends BaseEnitity {
 
-	 private String name;
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 private long application_id;
+	 private String Username;
 	 private String email;
 	 private String mobile;
 	 private String skills;
 	 private String hobbies;
-	 private String personalDetails;
 	 private Boolean declaration;
 	 @Lob
 	 @Column(name="resume",columnDefinition="LONGBLOB")
@@ -28,47 +35,28 @@ public class ApplicationEntity extends BaseEnitity {
 	 private String place;
 	 private long userId;
 	 private String resumeType;
+	 @OneToOne(cascade=CascadeType.ALL)
+	 private PermanentAddress add;
 	 
-	
-	public ApplicationEntity(String name, String email, String mobile, String skills, String hobbies,
-			String personalDetails, Boolean declaration, byte[] resume, Date date, String place, long userId,
-			String resumeType) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.mobile = mobile;
-		this.skills = skills;
-		this.hobbies = hobbies;
-		this.personalDetails = personalDetails;
-		this.declaration = declaration;
-		this.resume = resume;
-		this.date = date;
-		this.place = place;
-		this.userId = userId;
-		this.resumeType = resumeType;
+	 
+	public PermanentAddress getAdd() {
+		return add;
 	}
-    
-	public String getResumeType() {
-		return resumeType;
+	public void setAdd(PermanentAddress add) {
+		this.add = add;
 	}
-
-	public void setResumeType(String resumeType) {
-		this.resumeType = resumeType;
+	public ApplicationEntity() {}
+	public long getApplication_id() {
+		return application_id;
 	}
-
-	public byte[] getResume() {
-		return resume;
+	public void setApplication_id(long application_id) {
+		this.application_id = application_id;
 	}
-
-	public void setResume(byte[] resume) {
-		this.resume = resume;
+	public String getUsername() {
+		return Username;
 	}
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		Username = username;
 	}
 	public String getEmail() {
 		return email;
@@ -94,17 +82,17 @@ public class ApplicationEntity extends BaseEnitity {
 	public void setHobbies(String hobbies) {
 		this.hobbies = hobbies;
 	}
-	public String getPersonalDetails() {
-		return personalDetails;
-	}
-	public void setPersonalDetails(String personalDetails) {
-		this.personalDetails = personalDetails;
-	}
 	public Boolean getDeclaration() {
 		return declaration;
 	}
 	public void setDeclaration(Boolean declaration) {
 		this.declaration = declaration;
+	}
+	public byte[] getResume() {
+		return resume;
+	}
+	public void setResume(byte[] resume) {
+		this.resume = resume;
 	}
 	public Date getDate() {
 		return date;
@@ -124,5 +112,12 @@ public class ApplicationEntity extends BaseEnitity {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	 
-}
+	public String getResumeType() {
+		return resumeType;
+	}
+	public void setResumeType(String resumeType) {
+		this.resumeType = resumeType;
+	}
+
+    
+	}
